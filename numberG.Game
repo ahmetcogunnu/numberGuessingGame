@@ -1,0 +1,47 @@
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Random rant = new Random();
+        int number = rant.nextInt(100);
+
+
+        Scanner input = new Scanner(System.in);
+        int rigt = 0;
+        int selected;
+        int[] wrong = new int[5];
+        boolean isWin = false;
+        boolean isWrong = false;
+        System.out.println(number);
+        while (rigt < 5) {
+            System.out.print("Lutfen tahmininizi Giriniz   : ");
+            selected = input.nextInt();
+            if (selected < 0 || selected > 99) {
+                System.out.println("Lutfen 0-100 arasi deger giriniz");
+                continue;
+            }
+            if (selected == number) {
+                System.out.println("Tebrikler Dogru Tahmin !  Tahmin ettiginiz sayi " + number);
+                break;
+            } else {
+
+                System.out.println("Hatali bir sayi Girdiniz ");
+                if (selected > number) {
+                    System.out.println(selected + "  Sayisi, Gizli sayidan Buyuktur");
+                } else {
+                    System.out.println(selected + "  Sayisi Gizli Sayidan kucuktur");
+                }
+                wrong[rigt++] = selected;
+                System.out.println(" Kalan Hakki " + (5 - rigt));
+            }
+            if (!isWin) {
+                System.out.println("Kaybettiniz ! ");
+                if (!isWrong) {
+                    System.out.println("Tahminleriniz : " + Arrays.toString(wrong));
+                }
+            }
+        }
+    }
+}
